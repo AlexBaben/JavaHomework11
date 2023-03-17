@@ -25,8 +25,8 @@ public class FilmManagerTest {
         Assertions.assertArrayEquals(expected,actual);
     }
     @Test
-    public void ShouldShowLastTwo () {
-        FilmManager manager = new FilmManager(2);
+    public void ShouldShowLastWhenMore () {
+        FilmManager manager = new FilmManager(3);
         manager.addNewFilm(item1);
         manager.addNewFilm(item2);
         manager.addNewFilm(item3);
@@ -34,7 +34,33 @@ public class FilmManagerTest {
         manager.addNewFilm(item5);
         manager.addNewFilm(item6);
 
-        PosterItem[] expected = {item6,item5};
+        PosterItem[] expected = {item6,item5,item4};
+        PosterItem[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected,actual);
+    }
+
+    @Test
+    public void ShouldShowLastWhenLess () {
+        FilmManager manager = new FilmManager();
+        manager.addNewFilm(item1);
+        manager.addNewFilm(item2);
+
+        PosterItem[] expected = {item2,item1};
+        PosterItem[] actual = manager.findLast();
+
+        Assertions.assertArrayEquals(expected,actual);
+    }
+
+    @Test
+    public void ShouldShowLastWhenEqual () {
+        FilmManager manager = new FilmManager(4);
+        manager.addNewFilm(item1);
+        manager.addNewFilm(item2);
+        manager.addNewFilm(item3);
+        manager.addNewFilm(item4);
+
+        PosterItem[] expected = {item4,item3,item2,item1};
         PosterItem[] actual = manager.findLast();
 
         Assertions.assertArrayEquals(expected,actual);

@@ -9,6 +9,7 @@ public class FilmManager {
     public FilmManager(int boardLimit) {
         this.boardLimit = boardLimit;
     }
+
     public FilmManager() {
     }
 
@@ -27,8 +28,14 @@ public class FilmManager {
     }
 
     public PosterItem[] findLast() {
-        PosterItem[] tmp = new PosterItem[boardLimit];
-        for (int i = 0; i < boardLimit; i++) {
+        int resultLength;
+        if (items.length>=boardLimit) {
+            resultLength = boardLimit;
+        } else {
+            resultLength = items.length;
+        }
+        PosterItem[] tmp = new PosterItem[resultLength];
+        for (int i = 0; i < resultLength; i++) {
             tmp[i] = items[items.length - 1 - i];
         }
         items = tmp;
